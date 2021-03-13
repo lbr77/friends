@@ -67,11 +67,9 @@ jobs:
           GH_REGKEYS: ${{ secrets.GH_REGKEYS }}
       - name: 下载配置
         run: |
-          git clone https://github.com/lbr77/picbed.git
+          git clone https://lbr:c91299a8806dc2d2d3cb5e0dd005a6ead1819e2e@github.com/lbr77/picbed.git
       - name: 提交Commit #更新日志到GitHub仓库
         run: |
-          git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git config --global user.name github-actions[bot]
           cp ./dist/ -r ./picbed/
           cd ./picbed
           git add *
