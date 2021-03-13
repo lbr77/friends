@@ -37,16 +37,7 @@ class Friend {
       // 更新时间
       const updated_at = data.updated_at
 
-      result.push({
-        number,
-        html_url,
-        state,
-        title,
-        body,
-        label,
-        created_at,
-        updated_at
-      })
+      result.push(body)
     }
     return result
   }

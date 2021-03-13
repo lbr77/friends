@@ -1,28 +1,23 @@
-const fs = require('fs/promises')
-
-const giteeFriend = require('./components/gitee')
-const githubFriend = require('./components/github')
-
+const fs = require('fs/promises');
+const giteeFriend = require('./components/gitee');
+const YAML = require('json2yaml');
+const axios = require('axios');
 const index = async () => {
-  const obj = {
-    gitee: await giteeFriend.getData(),
-    github: await githubFriend.getData(),
-    date: Date.now() + ''
-  }
-  const friendStr = JSON.stringify(obj)
-  await fs.writeFile('./dist/friend.json', friendStr, 'utf8', (err) => {
-    if (err) throw err
+  console.log("Start");
+  let giteedata = await giteeFriend.getData();
+  const obj = giteedata;
+  const friendlinkFormat=[
+    {
+      "class_name": "大佬们",
+      "link_list": obj
+    }
+  ]
+  await fs.writeFile('./dist/friend.json', JSON.stringify(friendlinkFormat), 'utf8', (err) => {
+    if (err) throw err;
+  });
+  await fs.writeFile('./dist/link.yml',YAML.stringify(friendlinkFormat).replace("---",""),'utf8',(err)=>{
+    if (err) throw err;
   })
-  const pageageFile = {
-    name: process.env.NPM_NAME || '',
-    version: `${obj.date[0]}.${obj.date[1]}.${obj.date.slice(2, 13)}`,
-    main: 'index.js',
-    description: '一个存储爬取到的友链的仓库。'
-  }
-  const pageageFileStr = JSON.stringify(pageageFile)
-  await fs.writeFile('./dist/package.json', pageageFileStr, 'utf8', (err) => {
-    if (err) throw err
-  })
-  console.log('写入完成')
+  console.log('写入完成');
 }
-index()
+index();

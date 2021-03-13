@@ -1,6 +1,11 @@
 {
   "version": "1.0.0",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "json2yaml": "^1.1.0",
+    "nconf": "^0.11.2",
+    "nconf-yaml": "^1.0.2",
+    "prettier": "2.2.1",
+    "prettyjson": "^1.2.1"
   }
 }
