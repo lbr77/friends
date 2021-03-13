@@ -83,7 +83,10 @@ jobs:
           branch: friend
           force: true
           directory: dist
-
+      - name: Refresh_token
+        run: |
+          curl https://purge.jsdelivr.net/gh/lbr77/friend-spider@friend/friend.json
+          curl https://purge.jsdelivr.net/gh/lbr77/friend-spider@friend/link.yml
       # - name: 读取生成时间戳作为版本号
       #   id: version
       #   uses: ashley-taylor/read-json-property-action@v1.0
