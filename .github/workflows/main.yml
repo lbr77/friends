@@ -65,28 +65,18 @@ jobs:
           GH_SORT: ${{ secrets.GH_SORT }}
           GH_DIRECTION: ${{ secrets.GH_DIRECTION }}
           GH_REGKEYS: ${{ secrets.GH_REGKEYS }}
-
+      - name: 下载配置
+        run: |
+          git clone https://github.com/lbr77/picbed.git
       - name: 提交Commit #更新日志到GitHub仓库
         run: |
           git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
           git config --global user.name github-actions[bot]
-          cd dist
-          ls
-          git init
-          git add .
-          git commit -m "Add changes"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: friend
-          force: true
-          directory: dist
-      - name: Refresh_token
-        run: |
-          curl https://purge.jsdelivr.net/gh/lbr77/friend-spider@friend/friend.json
-          curl https://purge.jsdelivr.net/gh/lbr77/friend-spider@friend/link.yml
+          cp ./dist/ ./picbed/
+          cd ./picbed
+          git add *
+          git commit -m "Update Friendlink"
+          git push
       - name: 博客更新
         run: |
           wget https://webhook-to-github-actions.vercel.app/api?token=%272f279995f75936931f7b88c3832ef2d3b8eb3cd6%27&user=%27lbr77%27&source=%27blog-source%27
