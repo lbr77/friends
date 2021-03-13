@@ -70,11 +70,14 @@ jobs:
           git clone https://lbr:c91299a8806dc2d2d3cb5e0dd005a6ead1819e2e@github.com/lbr77/picbed.git
       - name: 提交Commit #更新日志到GitHub仓库
         run: |
+          git config --global user.email "liborui0609@foxmail.com"
+          git config --global user.name "lbr77"
           cp ./dist/ -r ./picbed/
           cd ./picbed
           git add *
           git commit -m "Update Friendlink"
           git push
+          
       - name: 博客更新
         run: |
           wget https://webhook-to-github-actions.vercel.app/api?token=%272f279995f75936931f7b88c3832ef2d3b8eb3cd6%27&user=%27lbr77%27&source=%27blog-source%27
