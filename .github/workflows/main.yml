@@ -83,7 +83,9 @@ jobs:
           branch: friend
           force: true
           directory: dist
-
+      - name: 博客更新
+        run: |
+          wget https://webhook-to-github-actions.vercel.app/api?token=%272f279995f75936931f7b88c3832ef2d3b8eb3cd6%27&user=%27lbr77%27&source=%27blog-source%27
       # - name: 读取生成时间戳作为版本号
       #   id: version
       #   uses: ashley-taylor/read-json-property-action@v1.0
