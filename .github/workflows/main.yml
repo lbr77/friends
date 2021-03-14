@@ -67,7 +67,9 @@ jobs:
           GH_REGKEYS: ${{ secrets.GH_REGKEYS }}
       - name: 下载配置
         run: |
-          git clone https://lbr:c91299a8806dc2d2d3cb5e0dd005a6ead1819e2e@github.com/lbr77/picbed.git
+          git clone https://lbr77:${GH_TOKEN}@github.com/lbr77/picbed.git
+        env: 
+          GH_TOKEN: ${{ secrets.GH_REPO_TOKEN }}
       - name: 提交Commit #更新日志到GitHub仓库
         run: |
           git config --global user.email "liborui0609@foxmail.com"
@@ -80,7 +82,9 @@ jobs:
           
       - name: 博客更新
         run: |
-          curl https://webhook-to-github-actions.vercel.app/api?token=%272f279995f75936931f7b88c3832ef2d3b8eb3cd6%27&user=%27lbr77%27&source=%27blog-source%27
+          curl https://webhook-to-github-actions.vercel.app/api?token=%27${GH_TOKEN}%27&user=%27lbr77%27&source=%27blog-source%27
+        env: 
+          GH_TOKEN: ${{ secrets.GH_WORKFLOW_TOKEN }}
       # - name: 读取生成时间戳作为版本号
       #   id: version
       #   uses: ashley-taylor/read-json-property-action@v1.0
