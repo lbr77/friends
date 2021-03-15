@@ -77,6 +77,7 @@ class Friend {
     for (let key of keys) {
       item[key] = this._getInfo(body, key)
     }
+    item['update_time']=new Date().getTime()
     return item
   }
   // 私有方法，匹配配置项
