@@ -10,13 +10,14 @@ const index = async () => {
     {
       "class_name": "我自己",
       "link_list": [
-        {"name":"Steve Li's Blog",
+        {
+         "name":"Steve Li's Blog",
          "link":"https://blog.stevelbr.top",
          "avatar":"https://www.imaegoo.com/images/avatar.jpg",
          "descr":"https://cdn.jsdelivr.net/gh/lbr77/picbed@main/img/2021/02/19/22-07-a7bd7.jpg"
         }
       ]
-    }
+    },
     {
       "class_name": "大佬们",
       "link_list": obj
